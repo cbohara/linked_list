@@ -54,13 +54,7 @@ def reverse_list(list)            # 12 -> 99 -> 37 -> nil
     # jump to next node in original linked list
     list = list.next_node    
   end
-
-  # NEED HELP MAKING STACK POP TO REVERSE LIST WORK
-  while (current_value = stack.pop) != nil                   # 37
-    first_node = LinkedListNode.new(current_value, nil)      # 37 -> nil
-    second_node = LinkedListNode.new(stack.pop, nil)         # 99 -> nil
-    first_node.next_node = second_node                       # 37 -> 99 -> nil
-  end
+  stack.data
 end
 
 # building 3 individual nodes and linking them to each other
@@ -73,32 +67,6 @@ print_values(node3)             # 12 -> 99 -> 37 -> nil
 puts "-------"
 revlist = reverse_list(node3)
 print_values(revlist)           # 37 -> 99 -> 12 -> nil
-
-
-  #   # pop off top value in stack
-  #   while (current_value = stack.pop) != nil
-  #     # create first node in reversed linked list
-  #     first_node = LinkedListNode.new(current_value, nil)
-  #     # create second node in reversed linked list with current top value of stack
-  #     second_node = LinkedListNode.new(stack.pop, nil)
-  #     # point the first node in reversed linked list to the second node
-  #     first_node.next_node = second_node
-  #   end 
-  # end
-
-
-  # only want to use stack.pop once per loop
-  # current node of 37 points to nothing
-  # previous rest of the list not set inside the loop, set up before loop
-  #top = LinkedListNode.new(stack.pop, nil)      # 37 -> nil
-  #middle = LinkedListNode.new(stack.pop, nil)   # 99 -> nil
-  # loop through stack and pop each node value into the reversed linked list
-
-
-    #top = LinkedListNode.new(stack.pop, nil)  # 37 -> nil
-    #middle = LinkedListNode.new(stack.pop, nil)  # 99 -> nil
-    #top.next_node = middle   # 37 -> 99 -> nil
-    # now middle = top
 
 
 
