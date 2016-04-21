@@ -17,15 +17,25 @@ def print_values(list_node)
   end
 end
 
-def reverse_list(list, previous=nil)
+def reverse_list(list, previous=nil)     # list 12 -> 99 -> 37 -> nil
+  # store current_head value
   current_head = list.next_node
-  p current_head
+  # change the current nodes next link to previous node (initially nil)
+  list.next_node = previous
+  # if the current_head does not equal nil, utilize recursive reverse_list
+  if current_head
+    # set the current node to be the next node until the node value is nil
+    reverse_list(current_head, list)
+  else
+    # return reversed list
+    list
+  end
 end
  
 node1 = LinkedListNode.new(37)
 node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
 
-print_values(node3)
+print_values(node3)   
 print_reverse = reverse_list(node3)
 print_values(print_reverse)
