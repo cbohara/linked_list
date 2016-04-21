@@ -18,9 +18,8 @@ def print_values(list_node)
 end
 
 def reverse_list(list, previous=nil)
-  # first I want to point node3 to previous=nil
-  # then I want to point node2 to node3
-  # then I want to point node1 to node2
+  current_head = list.next_node
+  p current_head
 end
  
 node1 = LinkedListNode.new(37)

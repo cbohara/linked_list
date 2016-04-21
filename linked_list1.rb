@@ -43,7 +43,6 @@ def print_values(list_node)
   end
 end
 
-# NEED TO FIGURE OUT
 def reverse_list(list)            # 12 -> 99 -> 37 -> nil
   # create stack 
   stack = Stack.new  
