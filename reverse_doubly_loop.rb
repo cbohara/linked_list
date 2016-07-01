@@ -4,12 +4,13 @@ class Node
   def initialize(data, prev_pointer = nil, next_pointer = nil)
     @data = data
     @prev_pointer = prev_pointer
+    @next_pointer = next_pointer
   end
 end
 
 class List
   def initialize(data)
-    @head = Node.new(data, nil)
+    @head = Node.new(data, nil, nil)
   end
 
   # add node to end of list

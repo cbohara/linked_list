@@ -15,7 +15,7 @@ class Singly_Linked_List
   end
 
   # add node to end of list
-  def add_node(data)
+  def insert_node(data)
     current_node = @head
     # traverse list to find last node
     while current_node.pointer != nil
@@ -57,7 +57,7 @@ class Singly_Linked_List
 end
 
 first10 = Singly_Linked_List.new(1)
-(2..10).each {|x| first10.add_node(x)}
+(2..10).each {|x| first10.insert_node(x)}
 first10.display
 first10.reverse_list
 first10.display
