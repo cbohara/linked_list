@@ -8,22 +8,30 @@ class Node
   end
 end
 
-class List
+class Doubly_Linked_List
   def initialize(data)
     @head = Node.new(data, nil, nil)
   end
-
-  # add node to end of list
-  def add_node(data)
+  # add node at head of list
+  def insert_node_at_head(data)
     current_node = @head
-    # traverse list to find last node
-    while current_node.pointer != nil
-      current_node = current_node.pointer
+    # create new node to insert
+    new_node = Node.new(data, nil, nil)
+    # store the head's next pointer value in order to not lose the rest of the list
+    temp = current_node.next_pointer
+    # point the head node to the new node
+    current_node.next_pointer = new_node
+    # point the new node to the head node
+    new_node.prev_pointer = current_node
+    # connect the new node to the next node in the list, if it exists
+    if temp != nil
+      new_node.next_pointer = temp
     end
-    # create new node
-    new_node = Node.new(data, nil)
-    # reassign last node's pointer from nil to new node at end of list
-    current_node.pointer = new_node
+  end
+  # add node to end of list
+  def insert_node_at_tail
+    current_node = @head
+
   end
 
   def reverse_list
@@ -46,17 +54,19 @@ class List
   def display
     current_node = @head
     # traverse list and print data in each node
-    while current_node.pointer != nil
+    while current_node.next_pointer != nil
         p current_node.data
-        current_node = current_node.pointer
+        current_node = current_node.next_pointer
     end
     # don't forget to print the last node's data
     p current_node.data
   end
 end
 
-first10 = List.new(1)
-(2..10).each {|x| first10.add_node(x)}
-first10.display
-first10.reverse_list
-first10.display
+list = Doubly_Linked_List.new(1)
+
+9.times do
+  list.insert_node_at_head(rand(10))
+end
+
+list.display
