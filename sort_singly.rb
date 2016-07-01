@@ -21,6 +21,7 @@ class List
     current_node.pointer = new_node
   end
 
+# NEED HELP
   def sort_list
     current_node = @head
     previous_node = nil
@@ -54,12 +55,12 @@ end
 
 list = List.new(1)
 
-10.times do
+9.times do
   list.add_node(rand(10))
 end
 
 p "UNSORTED"
 list.display
-p "SORTED PLEASE"
+p "SORTED"
 list.sort_list
 list.display
