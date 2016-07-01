@@ -34,6 +34,7 @@ class List
       # compare the data values and change pointers if necessary
       if current_data > next_data
         temp = next_node.pointer
+        next_node.pointer = current_node
         current_node.pointer = temp
       end
       previous_node = current_node
