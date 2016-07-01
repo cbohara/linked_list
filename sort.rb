@@ -22,9 +22,9 @@ class List
       current_node = current_node.pointer
     end
     # create new node
-    new_node = Node.new(data, nil)
+    newNode = Node.new(data, nil)
     # reassign last node's pointer from nil to new node at end of list
-    current_node.pointer = new_node
+    current_node.pointer = newNode
   end
 
   def reverse_list
@@ -46,18 +46,18 @@ class List
 
   def display
     current_node = @head
-    # traverse list and print data in each node
     while current_node.pointer != nil
         p current_node.data
         current_node = current_node.pointer
     end
-    # don't forget to print the last node's data
     p current_node.data
   end
 end
 
-first10 = List.new(1)
-(2..10).each {|x| first10.add_node(x)}
-first10.display
-first10.reverse_list
-first10.display
+long_list = List.new(1)
+
+1000.times do
+  long_list.add_node(rand(1000))
+end
+
+long_list.display
