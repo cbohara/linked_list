@@ -9,6 +9,8 @@ class Node
 end
 
 class Doubly_Linked_List
+  attr_accessor :data
+
   def initialize(data)
     @head = Node.new(data, nil, nil)
   end
@@ -29,26 +31,22 @@ class Doubly_Linked_List
     end
   end
   # add node to end of list
-  def insert_node_at_tail
+  def insert_node_at_tail(data)
     current_node = @head
-
+    # traverse the list
+    while current_node.next_pointer != nil
+      current_node = current_node.next_pointer
+    end
+    # create new node to insert
+    new_node = Node.new(data, nil, nil)
+    # point the last node to the new node
+    current_node.next_pointer = new_node
+    # point the new node to the last node
+    new_node.prev_pointer = current_node
   end
 
   def reverse_list
-    current_node = @head
-    previous_node = nil
-    next_node = nil
-    while current_node.pointer != nil
-      # store memory address of next node in order to not lose the rest of the list
-      next_node = current_node.pointer
-      # assign the current node to point to previous node's memory address
-      current_node.pointer = previous_node
-      # previous_node will now be reassigned to the current_node's address in order to traverse the list
-      previous_node = current_node
-      # current_node will now be reassigned to the next_node's address in order to traverse the list
-      current_node = next_node
-    end
-    @head = previous_node
+
   end
 
   def display
@@ -65,8 +63,9 @@ end
 
 list = Doubly_Linked_List.new(1)
 
-9.times do
-  list.insert_node_at_head(rand(10))
-end
+(2..10).each {|x| list.insert_node_at_tail(x)}
 
+list.display
+list.reverse_list
+p "REVERSE"
 list.display
