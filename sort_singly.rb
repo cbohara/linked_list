@@ -7,7 +7,7 @@ class Node
   end
 end
 
-class List
+class Singly_Linked_List
   def initialize(data)
     @head = Node.new(data, nil)
   end
@@ -53,7 +53,7 @@ class List
   end
 end
 
-list = List.new(1)
+list = Singly_Linked_List.new(1)
 
 9.times do
   list.add_node(rand(10))

@@ -9,7 +9,7 @@ class Node
   end
 end
 
-class List
+class Singly_Linked_List
   def initialize(data)
     @head = Node.new(data, nil)
   end
@@ -56,7 +56,7 @@ class List
   end
 end
 
-first10 = List.new(1)
+first10 = Singly_Linked_List.new(1)
 (2..10).each {|x| first10.add_node(x)}
 first10.display
 first10.reverse_list
