@@ -1,9 +1,21 @@
 class Node
-  attr_accessor :data, :pointer
+  attr_reader :data, :pointer
 
   def initialize(data, pointer = nil)
     @data = data
     @pointer = pointer
+  end
+
+  def set_pointer(node)
+    @pointer = node
+  end
+
+  def get_pointer
+    @pointer
+  end
+
+  def next?
+    !@pointer.nil?
   end
 end
 
@@ -12,27 +24,27 @@ class Singly_Linked_List
     @head = Node.new(data, nil)
   end
 
-  def insert_node(data)
+  def insert_node_at_end(data)
     current_node = @head
-    while current_node.pointer != nil
-      current_node = current_node.pointer
+
+    while current_node.next?
+      current_node = current_node.get_pointer
     end
+
     new_node = Node.new(data, nil)
-    current_node.pointer = new_node
+
+    current_node.set_pointer(new_node)
   end
 
   def reverse_list
     current_node = @head
     previous_node = nil
     next_node = nil
-    while current_node.pointer != nil
-      # store memory address of next node in order to not lose the rest of the list
+
+    while current_node
       next_node = current_node.pointer
-      # assign the current node to point to previous node's memory address
-      current_node.pointer = previous_node
-      # previous_node will now be reassigned to the current_node's address in order to traverse the list
+      current_node.set_pointer(previous_node)
       previous_node = current_node
-      # current_node will now be reassigned to the next_node's address in order to traverse the list
       current_node = next_node
     end
     @head = previous_node
@@ -40,16 +52,20 @@ class Singly_Linked_List
 
   def display
     current_node = @head
-    while current_node.pointer != nil
-        p current_node.data
-        current_node = current_node.pointer
+
+    while current_node.next?
+      p current_node.data
+      current_node = current_node.pointer
     end
+
     p current_node.data
   end
 end
 
 first10 = Singly_Linked_List.new(1)
-(2..10).each {|x| first10.insert_node(x)}
+(2..10).each {|x| first10.insert_node_at_end(x)}
+puts "forward!"
 first10.display
 first10.reverse_list
+puts "reverse!"
 first10.display
