@@ -33,38 +33,48 @@ class Doubly_Linked_List
     @head = Node.new(data, nil, nil)
   end
 
-  # add node to end of list
   def insert_node_at_end(data)
     current_node = @head
     while current_node.next?
       current_node = current_node.get_next_pointer
     end
-    # create new node to insert
+
     new_node = Node.new(data, nil, nil)
-    # point the last node to the new node
+
     current_node.set_next_pointer(new_node)
-    # point the new node to the last node
+
     new_node.set_previous_pointer(current_node)
   end
 
   def reverse_list
+    current_node = @head
+    previous_node = nil
+    next_node = nil
 
+    while current_node
+      next_node = current_node.next_pointer
+      current_node.set_next_pointer(current_node.get_previous_pointer)
+      current_node.set_previous_pointer(current_node.get_next_pointer)
+
+      previous_node = current_node
+      current_node = next_node
+    end
+    @head = previous_node
   end
 
   def display
     current_node = @head
-    # traverse list and print data in each node
-    while current_node.next_pointer != nil
-        p current_node.data
-        current_node = current_node.next_pointer
+    while current_node
+      p current_node.data
+      current_node = current_node.next_pointer
     end
-    # don't forget to print the last node's data
-    p current_node.data
   end
 end
 
 list = Doubly_Linked_List.new(1)
-
 (2..10).each {|x| list.insert_node_at_end(x)}
-
+puts "forward!"
+list.display
+list.reverse_list
+puts "reverse!"
 list.display
