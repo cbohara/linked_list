@@ -24,7 +24,7 @@ class Singly_Linked_List
     @head = Node.new(data, nil)
   end
 
-  def insert_node(data)
+  def insert_node_at_end(data)
     current_node = @head
 
     while current_node.next?
@@ -63,7 +63,7 @@ class Singly_Linked_List
 end
 
 first10 = Singly_Linked_List.new(1)
-(2..10).each {|x| first10.insert_node(x)}
+(2..10).each {|x| first10.insert_node_at_end(x)}
 puts "forward!"
 first10.display
 first10.reverse_list
