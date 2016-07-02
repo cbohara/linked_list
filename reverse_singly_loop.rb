@@ -2,9 +2,7 @@ class Node
   attr_accessor :data, :pointer
 
   def initialize(data, pointer = nil)
-    # payload value assigned to node
     @data = data
-    # memory address of next node in list
     @pointer = pointer
   end
 end
@@ -14,16 +12,12 @@ class Singly_Linked_List
     @head = Node.new(data, nil)
   end
 
-  # add node to end of list
   def insert_node(data)
     current_node = @head
-    # traverse list to find last node
     while current_node.pointer != nil
       current_node = current_node.pointer
     end
-    # create new node
     new_node = Node.new(data, nil)
-    # reassign last node's pointer from nil to new node at end of list
     current_node.pointer = new_node
   end
 
@@ -46,12 +40,10 @@ class Singly_Linked_List
 
   def display
     current_node = @head
-    # traverse list and print data in each node
     while current_node.pointer != nil
         p current_node.data
         current_node = current_node.pointer
     end
-    # don't forget to print the last node's data
     p current_node.data
   end
 end

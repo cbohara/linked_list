@@ -1,26 +1,21 @@
 class Node
-  attr_reader :data
-  attr_reader :pointer
-  @data
-  @pointer
+  attr_reader :data, :pointer
 
   def initialize(data, pointer = nil)
-
     @data = data
-
     @pointer = pointer
   end
 
-  def setPointer(val)
-    @pointer = val
+  def set_pointer(node)
+    @pointer = node
   end
 
-  def next
+  def get_pointer
     @pointer
   end
 
   def next?
-      !@pointer.nil?
+    !@pointer.nil?
   end
 end
 
@@ -33,25 +28,23 @@ class Singly_Linked_List
     current_node = @head
 
     while current_node.next?
-      current_node = current_node.next
+      current_node = current_node.get_pointer
     end
 
     new_node = Node.new(data, nil)
 
-    current_node.setPointer(new_node)
+    current_node.set_pointer(new_node)
   end
 
   def reverse_list
     current_node = @head
     previous_node = nil
     next_node = nil
-    while current_node.pointer != nil
+
+    while current_node
       next_node = current_node.pointer
-
-      current_node.setPointer(previous_node)
-
+      current_node.set_pointer(previous_node)
       previous_node = current_node
-
       current_node = next_node
     end
     @head = previous_node
@@ -61,8 +54,8 @@ class Singly_Linked_List
     current_node = @head
 
     while current_node.next?
-        p current_node.data
-        current_node = current_node.pointer
+      p current_node.data
+      current_node = current_node.pointer
     end
 
     p current_node.data
@@ -71,7 +64,8 @@ end
 
 first10 = Singly_Linked_List.new(1)
 (2..10).each {|x| first10.insert_node(x)}
+puts "forward!"
 first10.display
 first10.reverse_list
-puts "\n!answer:"
+puts "reverse!"
 first10.display
